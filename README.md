@@ -1,7 +1,7 @@
 
-  # Butcher System Management
+  # Amanibrew
 
-  This is a code bundle for Butcher System Management. The original project is available at https://www.figma.com/design/LyyzhZkGMBWSW9hbTosbiy/Butcher-System-Management.
+  This is a code bundle for Amanibrew. The original project is available at https://www.figma.com/design/LyyzhZkGMBWSW9hbTosbiy/Amanibrew.
 
   ## Running the code
 
