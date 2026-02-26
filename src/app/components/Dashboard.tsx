@@ -1,5 +1,6 @@
 import { DollarSign, Package, ShoppingCart, TrendingUp, AlertCircle } from "lucide-react";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { DeliveryReminders } from "./DeliveryReminders";
 
 export function Dashboard() {
   const stats = [
@@ -221,6 +222,9 @@ export function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Delivery Reminders */}
+      <DeliveryReminders />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router";
-import { LayoutDashboard, Package, ShoppingCart, Users, TrendingUp, Menu, X, Calendar } from "lucide-react";
+import { LayoutDashboard, Package, ShoppingCart, Users, TrendingUp, Menu, X, Calendar, FileText, Shield } from "lucide-react";
 import { useState } from "react";
 import logoIcon from "figma:asset/836753629ce820953d30091a24b438821c096c54.png";
 
@@ -14,6 +14,8 @@ export function Root() {
     { name: "Subscriptions", path: "/subscriptions", icon: Calendar },
     { name: "Customers", path: "/customers", icon: Users },
     { name: "Sales", path: "/sales", icon: TrendingUp },
+    { name: "Reports", path: "/reports", icon: FileText },
+    { name: "Users", path: "/users", icon: Shield, adminOnly: true },
   ];
 
   const isActive = (path: string) => {

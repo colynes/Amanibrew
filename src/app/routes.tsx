@@ -6,6 +6,8 @@ import { Orders } from "./components/Orders";
 import { Customers } from "./components/Customers";
 import { Sales } from "./components/Sales";
 import { Subscriptions } from "./components/Subscriptions";
+import { Reports } from "./components/Reports";
+import { Users } from "./components/Users";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +20,8 @@ export const router = createBrowserRouter([
       { path: "customers", Component: Customers },
       { path: "sales", Component: Sales },
       { path: "subscriptions", Component: Subscriptions },
+      { path: "reports", Component: Reports },
+      { path: "users", Component: Users },
     ],
   },
 ]);
