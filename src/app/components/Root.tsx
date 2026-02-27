@@ -1,22 +1,29 @@
 import { Outlet, Link, useLocation } from "react-router";
-import { LayoutDashboard, Package, ShoppingCart, Users, TrendingUp, Menu, X, Calendar, FileText, Shield } from "lucide-react";
+import { LayoutDashboard, Package, ShoppingCart, TrendingUp, Menu, X, FileText, Shield, Users as UsersIcon } from "lucide-react";
 import { useState } from "react";
 import logoIcon from "figma:asset/836753629ce820953d30091a24b438821c096c54.png";
 
 export function Root() {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  
+  // In real app, get from auth context
+  const userRole = "Administrator"; // or "Manager" or "Staff"
+  const canSeeUsers = userRole === "Administrator" || userRole === "Manager";
 
   const navigation = [
     { name: "Dashboard", path: "/", icon: LayoutDashboard },
     { name: "Inventory", path: "/inventory", icon: Package },
     { name: "Orders", path: "/orders", icon: ShoppingCart },
-    { name: "Subscriptions", path: "/subscriptions", icon: Calendar },
-    { name: "Customers", path: "/customers", icon: Users },
+    { name: "Fat Clients", path: "/fat-clients", icon: UsersIcon },
     { name: "Sales", path: "/sales", icon: TrendingUp },
     { name: "Reports", path: "/reports", icon: FileText },
-    { name: "Users", path: "/users", icon: Shield, adminOnly: true },
   ];
+  
+  // Only add Users if user has permission
+  if (canSeeUsers) {
+    navigation.push({ name: "Users", path: "/users", icon: Shield });
+  }
 
   const isActive = (path: string) => {
     if (path === "/") {

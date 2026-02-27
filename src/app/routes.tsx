@@ -3,9 +3,8 @@ import { Root } from "./components/Root";
 import { Dashboard } from "./components/Dashboard";
 import { Inventory } from "./components/Inventory";
 import { Orders } from "./components/Orders";
-import { Customers } from "./components/Customers";
 import { Sales } from "./components/Sales";
-import { Subscriptions } from "./components/Subscriptions";
+import { FatClients } from "./components/FatClients";
 import { Reports } from "./components/Reports";
 import { Users } from "./components/Users";
 
@@ -17,9 +16,8 @@ export const router = createBrowserRouter([
       { index: true, Component: Dashboard },
       { path: "inventory", Component: Inventory },
       { path: "orders", Component: Orders },
-      { path: "customers", Component: Customers },
+      { path: "fat-clients", Component: FatClients },
       { path: "sales", Component: Sales },
-      { path: "subscriptions", Component: Subscriptions },
       { path: "reports", Component: Reports },
       { path: "users", Component: Users },
     ],

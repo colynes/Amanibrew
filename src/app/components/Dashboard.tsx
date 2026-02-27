@@ -1,12 +1,12 @@
 import { DollarSign, Package, ShoppingCart, TrendingUp, AlertCircle } from "lucide-react";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
-import { DeliveryReminders } from "./DeliveryReminders";
+import { DeliverySummaryBar } from "./DeliverySummaryBar";
 
 export function Dashboard() {
   const stats = [
     {
       label: "Today's Sales",
-      value: "$2,450",
+      value: "Tsh 2,450,000",
       change: "+12.5%",
       icon: DollarSign,
       trend: "up",
@@ -27,7 +27,7 @@ export function Dashboard() {
     },
     {
       label: "Monthly Revenue",
-      value: "$52,340",
+      value: "Tsh 52,340,000",
       change: "+18.2%",
       icon: TrendingUp,
       trend: "up",
@@ -72,6 +72,9 @@ export function Dashboard() {
         <h1>Dashboard</h1>
         <p className="text-muted-foreground">Welcome to Amani Brew Management System</p>
       </div>
+
+      {/* Delivery Summary Bar */}
+      <DeliverySummaryBar />
 
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -222,9 +225,6 @@ export function Dashboard() {
           </div>
         </div>
       </div>
-
-      {/* Delivery Reminders */}
-      <DeliveryReminders />
     </div>
   );
 }
