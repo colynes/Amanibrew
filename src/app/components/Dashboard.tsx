@@ -60,10 +60,10 @@ export function Dashboard() {
   ];
 
   const recentOrders = [
-    { id: "ORD-1234", customer: "John Smith", items: 5, total: "$145.50", status: "Completed" },
-    { id: "ORD-1235", customer: "Sarah Johnson", items: 3, total: "$98.20", status: "Processing" },
-    { id: "ORD-1236", customer: "Mike Davis", items: 7, total: "$234.80", status: "Pending" },
-    { id: "ORD-1237", customer: "Emily Brown", items: 2, total: "$65.40", status: "Completed" },
+    { id: "ORD-1234", customer: "John Smith", items: 5, total: "Tzs 145,500", status: "Completed" },
+    { id: "ORD-1235", customer: "Sarah Johnson", items: 3, total: "Tzs 98,200", status: "Processing" },
+    { id: "ORD-1236", customer: "Mike Davis", items: 7, total: "Tzs 234,800", status: "Pending" },
+    { id: "ORD-1237", customer: "Emily Brown", items: 2, total: "Tzs 65,400", status: "Completed" },
   ];
 
   return (

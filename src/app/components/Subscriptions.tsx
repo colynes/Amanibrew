@@ -416,7 +416,7 @@ export function Subscriptions() {
               </div>
 
               <div>
-                <label className="mb-1 block text-sm">Total Value ($)</label>
+                <label className="mb-1 block text-sm">Total Value (Tzs)</label>
                 <input
                   type="number"
                   step="0.01"

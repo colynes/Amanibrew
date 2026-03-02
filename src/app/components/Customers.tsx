@@ -137,7 +137,7 @@ export function Customers() {
         </div>
         <div className="rounded-lg border border-border bg-card p-6">
           <p className="text-sm text-muted-foreground">Avg. Order Value</p>
-          <p className="mt-1 text-2xl">${averageOrderValue.toFixed(2)}</p>
+          <p className="mt-1 text-2xl">Tzs {averageOrderValue.toLocaleString()}</p>
         </div>
       </div>
 

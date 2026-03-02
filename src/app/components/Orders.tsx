@@ -287,15 +287,15 @@ export function Orders() {
               <div className="border-t border-border pt-4">
                 <div className="flex items-center justify-between">
                   <p>Subtotal</p>
-                  <p>$135.45</p>
+                  <p>Tzs 135,450</p>
                 </div>
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <p>Tax (7.5%)</p>
-                  <p>$10.16</p>
+                  <p>Tzs 10,160</p>
                 </div>
                 <div className="mt-2 flex items-center justify-between border-t border-border pt-2">
                   <p>Total</p>
-                  <p className="text-xl">$145.50</p>
+                  <p className="text-xl">Tzs 145,500</p>
                 </div>
               </div>
 

@@ -177,6 +177,15 @@ export function Root() {
                 <p className="truncate text-xs text-sidebar-foreground/60">admin@amanibrew.com</p>
               </div>
             </div>
+            <button
+              onClick={() => {
+                // In real app, implement logout logic
+                alert("Logout functionality");
+              }}
+              className="mt-2 w-full rounded-lg bg-destructive px-4 py-2 text-sm text-destructive-foreground hover:bg-destructive/90 transition-colors"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </aside>
