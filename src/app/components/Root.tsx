@@ -1,11 +1,12 @@
 import { Outlet, Link, useLocation } from "react-router";
-import { LayoutDashboard, Package, ShoppingCart, TrendingUp, Menu, X, FileText, Shield, Users as UsersIcon } from "lucide-react";
+import { LayoutDashboard, Package, ShoppingCart, TrendingUp, Menu, X, FileText, Shield, Users as UsersIcon, ChevronDown, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import logoIcon from "figma:asset/836753629ce820953d30091a24b438821c096c54.png";
 
 export function Root() {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [expandedItems, setExpandedItems] = useState<string[]>(["inventory", "fat-clients"]);
   
   // In real app, get from auth context
   const userRole = "Administrator"; // or "Manager" or "Staff"
@@ -13,9 +14,25 @@ export function Root() {
 
   const navigation = [
     { name: "Dashboard", path: "/", icon: LayoutDashboard },
-    { name: "Inventory", path: "/inventory", icon: Package },
+    { 
+      name: "Inventory", 
+      path: "/inventory", 
+      icon: Package,
+      children: [
+        { name: "Categories", path: "/inventory/categories" },
+        { name: "Products", path: "/inventory/products" },
+      ]
+    },
     { name: "Orders", path: "/orders", icon: ShoppingCart },
-    { name: "Fat Clients", path: "/fat-clients", icon: UsersIcon },
+    { 
+      name: "Fat Clients", 
+      path: "/fat-clients", 
+      icon: UsersIcon,
+      children: [
+        { name: "Subscriptions", path: "/fat-clients/subscriptions" },
+        { name: "Billing", path: "/fat-clients/billing" },
+      ]
+    },
     { name: "Sales", path: "/sales", icon: TrendingUp },
     { name: "Reports", path: "/reports", icon: FileText },
   ];
@@ -30,6 +47,12 @@ export function Root() {
       return location.pathname === "/";
     }
     return location.pathname.startsWith(path);
+  };
+
+  const toggleExpanded = (name: string) => {
+    setExpandedItems(prev => 
+      prev.includes(name) ? prev.filter(item => item !== name) : [...prev, name]
+    );
   };
 
   return (
@@ -69,27 +92,78 @@ export function Root() {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 space-y-1 p-4">
+          <nav className="flex-1 space-y-1 overflow-y-auto p-4">
             {navigation.map((item) => {
               const Icon = item.icon;
               const active = isActive(item.path);
+              const hasChildren = item.children && item.children.length > 0;
+              const isExpanded = expandedItems.includes(item.name.toLowerCase().replace(" ", "-"));
+              
               return (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setSidebarOpen(false)}
-                  className={`
-                    flex items-center gap-3 rounded-lg px-4 py-3 transition-colors
-                    ${
-                      active
-                        ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                        : "hover:bg-sidebar-accent text-sidebar-foreground/80 hover:text-sidebar-foreground"
-                    }
-                  `}
-                >
-                  <Icon className="h-5 w-5" />
-                  <span>{item.name}</span>
-                </Link>
+                <div key={item.path}>
+                  {hasChildren ? (
+                    <button
+                      onClick={() => toggleExpanded(item.name.toLowerCase().replace(" ", "-"))}
+                      className={`
+                        flex w-full items-center justify-between rounded-lg px-4 py-3 transition-colors
+                        ${
+                          active
+                            ? "bg-sidebar-primary text-sidebar-primary-foreground"
+                            : "hover:bg-sidebar-accent text-sidebar-foreground/80 hover:text-sidebar-foreground"
+                        }
+                      `}
+                    >
+                      <div className="flex items-center gap-3">
+                        <Icon className="h-5 w-5" />
+                        <span>{item.name}</span>
+                      </div>
+                      {isExpanded ? (
+                        <ChevronDown className="h-4 w-4" />
+                      ) : (
+                        <ChevronRight className="h-4 w-4" />
+                      )}
+                    </button>
+                  ) : (
+                    <Link
+                      to={item.path}
+                      onClick={() => setSidebarOpen(false)}
+                      className={`
+                        flex items-center gap-3 rounded-lg px-4 py-3 transition-colors
+                        ${
+                          active
+                            ? "bg-sidebar-primary text-sidebar-primary-foreground"
+                            : "hover:bg-sidebar-accent text-sidebar-foreground/80 hover:text-sidebar-foreground"
+                        }
+                      `}
+                    >
+                      <Icon className="h-5 w-5" />
+                      <span>{item.name}</span>
+                    </Link>
+                  )}
+                  
+                  {/* Submenu */}
+                  {hasChildren && isExpanded && (
+                    <div className="ml-8 mt-1 space-y-1">
+                      {item.children?.map((child) => (
+                        <Link
+                          key={child.path}
+                          to={child.path}
+                          onClick={() => setSidebarOpen(false)}
+                          className={`
+                            block rounded-lg px-4 py-2 text-sm transition-colors
+                            ${
+                              location.pathname === child.path
+                                ? "bg-sidebar-primary/50 text-sidebar-primary-foreground"
+                                : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
+                            }
+                          `}
+                        >
+                          {child.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </nav>

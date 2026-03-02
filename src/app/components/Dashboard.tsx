@@ -6,7 +6,7 @@ export function Dashboard() {
   const stats = [
     {
       label: "Today's Sales",
-      value: "Tsh 2,450,000",
+      value: "Tzs 2,450,000",
       change: "+12.5%",
       icon: DollarSign,
       trend: "up",
@@ -27,7 +27,7 @@ export function Dashboard() {
     },
     {
       label: "Monthly Revenue",
-      value: "Tsh 52,340,000",
+      value: "Tzs 52,340,000",
       change: "+18.2%",
       icon: TrendingUp,
       trend: "up",
