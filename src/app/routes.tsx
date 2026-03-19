@@ -11,11 +11,21 @@ import { FatClientsSubscriptions } from "./components/FatClientsSubscriptions";
 import { FatClientsBilling } from "./components/FatClientsBilling";
 import { Reports } from "./components/Reports";
 import { Users } from "./components/Users";
+import { Login } from "./components/Login";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
+    path: "/login",
+    Component: Login,
+  },
+  {
     path: "/",
-    Component: Root,
+    element: (
+      <ProtectedRoute>
+        <Root />
+      </ProtectedRoute>
+    ),
     children: [
       { index: true, Component: Dashboard },
       { path: "inventory", Component: Inventory },

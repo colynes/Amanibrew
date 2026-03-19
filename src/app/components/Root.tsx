@@ -1,15 +1,17 @@
-import { Outlet, Link, useLocation } from "react-router";
+import { Outlet, Link, useLocation, useNavigate } from "react-router";
 import { LayoutDashboard, Package, ShoppingCart, TrendingUp, Menu, X, FileText, Shield, Users as UsersIcon, ChevronDown, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import logoIcon from "figma:asset/836753629ce820953d30091a24b438821c096c54.png";
+import { useAuth } from "../contexts/AuthContext";
 
 export function Root() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<string[]>(["inventory", "fat-clients"]);
   
-  // In real app, get from auth context
-  const userRole = "Administrator"; // or "Manager" or "Staff"
+  const userRole = user?.role || "Staff";
   const canSeeUsers = userRole === "Administrator" || userRole === "Manager";
 
   const navigation = [
@@ -171,16 +173,16 @@ export function Root() {
           {/* Footer */}
           <div className="border-t border-sidebar-border p-4">
             <div className="flex items-center gap-3 rounded-lg bg-sidebar-accent p-3">
-              <img src={logoIcon} alt="Admin" className="h-10 w-10 rounded-full bg-sidebar-primary/20 p-1.5" />
+              <img src={logoIcon} alt={user?.name} className="h-10 w-10 rounded-full bg-sidebar-primary/20 p-1.5" />
               <div className="flex-1 min-w-0">
-                <p className="truncate text-sm">Admin User</p>
-                <p className="truncate text-xs text-sidebar-foreground/60">admin@amanibrew.com</p>
+                <p className="truncate text-sm">{user?.name}</p>
+                <p className="truncate text-xs text-sidebar-foreground/60">{user?.email}</p>
               </div>
             </div>
             <button
               onClick={() => {
-                // In real app, implement logout logic
-                alert("Logout functionality");
+                logout();
+                navigate("/login");
               }}
               className="mt-2 w-full rounded-lg bg-destructive px-4 py-2 text-sm text-destructive-foreground hover:bg-destructive/90 transition-colors"
             >
