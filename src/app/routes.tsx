@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router";
-import { Root } from "./components/Root";
 import { Dashboard } from "./components/Dashboard";
 import { Inventory } from "./components/Inventory";
 import { Categories } from "./components/Categories";
@@ -12,20 +11,21 @@ import { FatClientsBilling } from "./components/FatClientsBilling";
 import { Reports } from "./components/Reports";
 import { Users } from "./components/Users";
 import { Login } from "./components/Login";
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import { Landing } from "./components/Landing";
+import { ProtectedRoot } from "./components/ProtectedRoot";
 
 export const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: Landing,
+  },
   {
     path: "/login",
     Component: Login,
   },
   {
-    path: "/",
-    element: (
-      <ProtectedRoute>
-        <Root />
-      </ProtectedRoute>
-    ),
+    path: "/dashboard",
+    Component: ProtectedRoot,
     children: [
       { index: true, Component: Dashboard },
       { path: "inventory", Component: Inventory },

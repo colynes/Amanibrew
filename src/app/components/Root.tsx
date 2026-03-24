@@ -15,38 +15,38 @@ export function Root() {
   const canSeeUsers = userRole === "Administrator" || userRole === "Manager";
 
   const navigation = [
-    { name: "Dashboard", path: "/", icon: LayoutDashboard },
+    { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
     { 
       name: "Inventory", 
-      path: "/inventory", 
+      path: "/dashboard/inventory", 
       icon: Package,
       children: [
-        { name: "Categories", path: "/inventory/categories" },
-        { name: "Products", path: "/inventory/products" },
+        { name: "Categories", path: "/dashboard/inventory/categories" },
+        { name: "Products", path: "/dashboard/inventory/products" },
       ]
     },
-    { name: "Orders", path: "/orders", icon: ShoppingCart },
+    { name: "Orders", path: "/dashboard/orders", icon: ShoppingCart },
     { 
       name: "Fat Clients", 
-      path: "/fat-clients", 
+      path: "/dashboard/fat-clients", 
       icon: UsersIcon,
       children: [
-        { name: "Subscriptions", path: "/fat-clients/subscriptions" },
-        { name: "Billing", path: "/fat-clients/billing" },
+        { name: "Subscriptions", path: "/dashboard/fat-clients/subscriptions" },
+        { name: "Billing", path: "/dashboard/fat-clients/billing" },
       ]
     },
-    { name: "Sales", path: "/sales", icon: TrendingUp },
-    { name: "Reports", path: "/reports", icon: FileText },
+    { name: "Sales", path: "/dashboard/sales", icon: TrendingUp },
+    { name: "Reports", path: "/dashboard/reports", icon: FileText },
   ];
   
   // Only add Users if user has permission
   if (canSeeUsers) {
-    navigation.push({ name: "Users", path: "/users", icon: Shield });
+    navigation.push({ name: "Users", path: "/dashboard/users", icon: Shield });
   }
 
   const isActive = (path: string) => {
-    if (path === "/") {
-      return location.pathname === "/";
+    if (path === "/dashboard") {
+      return location.pathname === "/dashboard";
     }
     return location.pathname.startsWith(path);
   };
