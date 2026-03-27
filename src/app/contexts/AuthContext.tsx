@@ -1,12 +1,14 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-export type UserRole = "Administrator" | "Manager" | "Staff";
+export type UserRole = "Customer" | "Staff" | "Admin";
 
 export interface User {
   id: string;
   name: string;
   email: string;
   role: UserRole;
+  phone?: string;
+  address?: string;
 }
 
 interface AuthContextType {
@@ -25,21 +27,23 @@ const MOCK_USERS: Array<User & { password: string }> = [
     name: "Admin User",
     email: "admin@amanibrew.com",
     password: "admin123",
-    role: "Administrator",
+    role: "Admin",
   },
   {
     id: "2",
-    name: "Manager User",
-    email: "manager@amanibrew.com",
-    password: "manager123",
-    role: "Manager",
-  },
-  {
-    id: "3",
     name: "Staff User",
     email: "staff@amanibrew.com",
     password: "staff123",
     role: "Staff",
+  },
+  {
+    id: "3",
+    name: "John Doe",
+    email: "customer@example.com",
+    password: "customer123",
+    role: "Customer",
+    phone: "+255 123 456 789",
+    address: "123 Main Street, Dar es Salaam",
   },
 ];
 

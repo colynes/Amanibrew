@@ -122,6 +122,7 @@ export function Dashboard() {
               />
               <Legend />
               <Line
+                id="target-sales-line"
                 type="monotone"
                 dataKey="target"
                 stroke="#b8935f"
@@ -129,14 +130,17 @@ export function Dashboard() {
                 strokeDasharray="5 5"
                 dot={{ fill: "#b8935f", r: 3 }}
                 name="Target Sales"
+                isAnimationActive={false}
               />
               <Line
+                id="actual-sales-line"
                 type="monotone"
                 dataKey="actual"
                 stroke="#3d2817"
                 strokeWidth={3}
                 dot={{ fill: "#3d2817", r: 4 }}
                 name="Actual Sales"
+                isAnimationActive={false}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -158,8 +162,8 @@ export function Dashboard() {
                 }}
               />
               <Legend />
-              <Bar dataKey="target" fill="#b8935f" radius={[8, 8, 0, 0]} name="Target" />
-              <Bar dataKey="actual" fill="#3d2817" radius={[8, 8, 0, 0]} name="Actual" />
+              <Bar id="target-product-bar" dataKey="target" fill="#b8935f" radius={[8, 8, 0, 0]} name="Target" isAnimationActive={false} />
+              <Bar id="actual-product-bar" dataKey="actual" fill="#3d2817" radius={[8, 8, 0, 0]} name="Actual" isAnimationActive={false} />
             </BarChart>
           </ResponsiveContainer>
         </div>

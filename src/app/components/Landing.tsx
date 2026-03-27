@@ -56,11 +56,11 @@ export function Landing() {
             </div>
           </div>
           <Button
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/shop")}
             className="text-white transition-colors hover:opacity-90"
             style={{ backgroundColor: "#3d2817" }}
           >
-            Staff Login
+            Order Now
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>

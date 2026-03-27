@@ -12,7 +12,7 @@ export function Root() {
   const [expandedItems, setExpandedItems] = useState<string[]>(["inventory", "fat-clients"]);
   
   const userRole = user?.role || "Staff";
-  const canSeeUsers = userRole === "Administrator" || userRole === "Manager";
+  const canSeeUsers = userRole === "Admin";
 
   const navigation = [
     { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },

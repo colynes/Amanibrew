@@ -13,6 +13,14 @@ import { Users } from "./components/Users";
 import { Login } from "./components/Login";
 import { Landing } from "./components/Landing";
 import { ProtectedRoot } from "./components/ProtectedRoot";
+import { ShopRoot } from "./components/ShopRoot";
+import { ShopHome } from "./components/ShopHome";
+import { ShopProducts } from "./components/ShopProducts";
+import { ShopCart } from "./components/ShopCart";
+import { ShopCheckout } from "./components/ShopCheckout";
+import { ShopProfile } from "./components/ShopProfile";
+import { ShopPromotions } from "./components/ShopPromotions";
+import { OrderTracking } from "./components/OrderTracking";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +30,19 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     Component: Login,
+  },
+  {
+    path: "/shop",
+    Component: ShopRoot,
+    children: [
+      { index: true, Component: ShopHome },
+      { path: "products", Component: ShopProducts },
+      { path: "cart", Component: ShopCart },
+      { path: "checkout", Component: ShopCheckout },
+      { path: "profile", Component: ShopProfile },
+      { path: "promotions", Component: ShopPromotions },
+      { path: "order-tracking/:orderId", Component: OrderTracking },
+    ],
   },
   {
     path: "/dashboard",
